@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  api:
+    command: yarn start:prod
+    environment:
+      - NODE_ENV=production
+      - DB_URI=mongodb://192.168.8.100:27017/enlighten

@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  api:
+    container_name: 'enlighten-api'
+    build: .
+    environment:
+      - JWT_KEY=bA2xcjpf8y5aSUFsNB2qN5yymUBSs6es3qHoFpGkec75RCeBb8cpKauGefw5qy4
+    ports:
+      - '8080:8000'
