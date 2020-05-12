@@ -16,10 +16,19 @@ module.exports = {
   },
 
   findAll: async (req, res, next) => {
-    // const { limit, offset } = req.query;
+    const { isStarred, title } = req.query;
     const { user } = req;
+    const query = { user: user.id };
     try {
-      const notes = await Note.find({ user: user.id }, { body: 0 });
+      if (isStarred) {
+        query.isStarred = true;
+      }
+      if (title) {
+        query.$text = {
+          $search: title,
+        };
+      }
+      const notes = await Note.find(query, { body: 0 });
       return res.json({ notes });
     } catch (error) {
       return next(error);
@@ -40,7 +49,7 @@ module.exports = {
   updateOne: async (req, res, next) => {
     const { id: _id } = req.params;
     const { user } = req;
-    const updatedFields = _.pick(req.body, ['title', 'body']);
+    const updatedFields = _.pick(req.body, ['title', 'body', 'isStarred']);
     try {
       await Note.updateOne({ _id, user: user.id }, updatedFields, {
         runValidators: true,

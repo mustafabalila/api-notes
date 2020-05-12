@@ -46,7 +46,7 @@
     "multer-s3": "^2.9.0",
     "nodemailer": "^6.4.2",
     "passport": "^0.4.1",
-    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth2": "^0.2.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "swagger-client": "^3.9.6",
@@ -56,10 +56,10 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "pm2": "*",
     "concurrently": "^5.0.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.1"
+    "eslint-plugin-import": "^2.19.1",
+    "pm2": "*"
   }
 }

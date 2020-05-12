@@ -17,6 +17,11 @@ const NoteSchema = new Schema(
       default: Date.now,
     },
 
+    isStarred: {
+      type: Boolean,
+      default: false,
+    },
+
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -31,5 +36,7 @@ NoteSchema.virtual('date').get(function () {
   const date = new Date(note.createdAt);
   return date.toDateString();
 });
+
+NoteSchema.index({ title: 'text' });
 
 module.exports = model('Note', NoteSchema);

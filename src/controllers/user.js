@@ -36,6 +36,24 @@ module.exports = {
     }
   },
 
+  googleSignup: async (req, res, next) => {
+    try {
+      const { user } = req;
+      const payload = {
+        _id: user.id,
+        username: user.username,
+      };
+
+      const token = jwt.sign(payload, process.env.JWT_KEY);
+      return res.json({
+        user,
+        token,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
+
   login: async (req, res, next) => {
     try {
       const validatorErrors = validationResult(req);

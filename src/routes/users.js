@@ -2,6 +2,7 @@ const { Router } = require('express');
 const passport = require('passport');
 const {
   signup,
+  googleSignup,
   login,
   findAll,
   findOne,
@@ -19,6 +20,19 @@ const router = Router();
 router.get('/', findAll);
 router.post('/signup', signupValidator, isUnique, signup);
 router.post('/login', loginValidator, login);
+
+router.get(
+  '/google-auth',
+  passport.authenticate('google', {
+    scope: ['profile'],
+  }),
+);
+
+router.get(
+  '/google-auth/callback',
+  passport.authenticate('google', { session: false }),
+  googleSignup,
+);
 
 router
   .route('/:id')

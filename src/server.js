@@ -6,7 +6,9 @@ dotenv.config({ path: '../.env' });
 
 const port = process.env.PORT || 8000;
 mongoose.connect(process.env.DB_URI, {
-  useNewUrlParser: true, useUnifiedTopology: true, autoIndex: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  autoIndex: true,
 });
 mongoose.connection.on('error', (error) => {
   // eslint-disable-next-line no-console
@@ -14,11 +16,13 @@ mongoose.connection.on('error', (error) => {
   process.exit(1);
 });
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Listing on port ${port}`);
-}).on('error', (e) => {
-  // eslint-disable-next-line no-console
-  console.error(e);
-  process.exit(1);
-});
+app
+  .listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Listing on port ${port}`);
+  })
+  .on('error', (e) => {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    process.exit(1);
+  });
