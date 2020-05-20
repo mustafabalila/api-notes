@@ -133,7 +133,10 @@ module.exports = {
       await User.updateOne({ _id }, fields, {
         runValidators: true,
       });
-      return res.json({ message: 'updated successfully' });
+      return res.json({
+        message: 'updated successfully',
+        user: { _id, ...fields },
+      });
     } catch (error) {
       return next(error);
     }
