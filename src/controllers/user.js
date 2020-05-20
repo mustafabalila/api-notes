@@ -28,7 +28,7 @@ module.exports = {
 
       const token = jwt.sign(payload, process.env.JWT_KEY);
       return res.json({
-        user: payload,
+        user: { email: fields.email, ...payload },
         token,
       });
     } catch (error) {
@@ -79,7 +79,7 @@ module.exports = {
 
         const token = jwt.sign(payload, process.env.JWT_KEY);
         return res.json({
-          user: payload,
+          user: { email: user.email, ...payload },
           token,
         });
       })(req, res, next);
